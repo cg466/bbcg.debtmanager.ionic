@@ -1,0 +1,31 @@
+<ion-pane >
+	<ion-content scroll="false">
+		<section class="personList">
+            <div class="row">
+				<div class="col text-center PageTitle" >Person List</div>
+            </div>
+				<div class="row row-center debtSummaryColHeader">
+					<div class="col col-70 debtSummaryColHeader text-left">Person</div>
+                    <div class="col col-30 debtSummaryColHeader text-right">Balance</div>
+                </div>  
+			<ion-scroll direction="y" style="height: 100vh">
+                <ion-item 
+                    collection-repeat="person in persons"
+					collection-item-height=150
+                >
+                        <div class="row row-center card">
+                            <div class="col col-70 text-left">
+								<div class="row row-center debtSummaryRowText"><img ng-src="{{getGoogleImageSrc(person.googlePerson.googleImageUrl,55)}}"></img>
+								&nbsp &nbsp{{person.name}}</div>
+							</div>
+						
+                            <div class="col col-30 item-text-wrap text-right"
+                                 ng-class="{'negativeNumber': person.latestBalance.balanceAmount > 0, 'positiveNumber': person.latestBalance.balanceAmount <= 0} ">
+                                {{returnCurrencyAmount(person.latestBalance.balanceAmount)}}
+                            </div>
+                        </div>
+                </ion-item>
+            </ion-scroll>
+        </section>
+  </ion-content>
+</ion-pane>

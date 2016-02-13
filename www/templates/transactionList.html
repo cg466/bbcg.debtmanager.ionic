@@ -1,0 +1,36 @@
+<ion-pane >
+	<ion-content scroll="false">
+		<section class="transactionList">
+            <div class="row">
+				<div class="col text-center PageTitle" >Transaction List</div>
+            </div>	
+				<div class="row row-center debtSummaryColHeader">
+					<div class="col col-15  text-left">Date</div>
+                    <div class="col col-55  text-left">Description</div>
+                    <div class="col col-20  text-left">Amount</div>
+                    <div class="col col-20  text-left">Balance</div>
+                </div>   
+			<ion-scroll direction="y" style="height: 80vh">
+                <ion-item 
+                    collection-repeat="transaction in transactions"
+					ng-click="selectTransaction(transaction)"
+					collection-item-height="getTransactionHeight(transaction, $index)"
+                >
+                        
+						<div class="row row-center" >
+                            <div class="col col-15 debtSummaryRowText">{{transaction.transactionPostedDate |  date:'MMM dd, yyyy'}}</div>
+                            <div class="col col-55 item-text-wrap debtSummaryRowText" >{{transaction.transactionDescription}}</div>
+                            <div class="col col-20 debtSummaryRowText">{{returnCurrencyAmount(transaction.transactionAmount)}}</div>
+                            <div class="col col-20"
+                                 ng-class="{'negativeNumber': transaction.transactionPersonAmounts[0].runningBalance.balanceAmount > 0, 'positiveNumber': transaction.transactionPersonAmounts[0].runningBalance.balanceAmount <= 0} ">
+                                {{returnCurrencyAmount(transaction.transactionPersonAmounts[0].runningBalance.balanceAmount)}}
+                            </div>
+                        </div>
+                </ion-item>
+            </ion-scroll>
+        </section>
+		
+      
+      
+  </ion-content>
+</ion-pane>

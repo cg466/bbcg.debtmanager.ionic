@@ -1,0 +1,112 @@
+  <ion-modal-view class = "transactionDetailModal">
+    <ion-header-bar class="bar-dark">
+      <h1 class="title">Transaction Details</h1>
+	  <button class="button button-clear button-energized" style="font-weight: bold" ng-click="closeModal()">Close</button>
+    </ion-header-bar>
+<ion-content scroll="false">
+      
+
+                      <div class="card">
+                    <div class="row row-center transactionDetailItem no-padding" >
+                        <div class="col col-50 text-left TransactionDetailLabel">Created By</div>						
+						<div class="col col-50 text-right">
+							<img ng-src="{{getGoogleImageSrc(transactionDetail.transactionCreatedBy.googlePerson.googleImageUrl,30)}}"style="vertical-align:middle"></img></img>
+							<span style="">{{transactionDetail.transactionCreatedBy.name}}</span>
+						</div>
+                    </div>
+					
+					<div class="row row-center transactionDetailItem no-padding" >
+                        <div class="col col-50 text-left TransactionDetailLabel">Group</div>
+						<div class="col col-50 item-text-wrap text-right ">{{transactionDetail.transactionGroup.groupName}}</div>
+                    </div>
+                    
+          
+                    <div class="row row-center transactionDetailItem no-padding">
+						<div class="col col-50 text-left TransactionDetailLabel">Posted Date</div>
+                        <div class="col col-50 item-text-wrap text-right ">{{transactionDetail.transactionPostedDate | date:'MMM dd, yyyy hh:mm:ss a'}}</div>
+					</div>
+                 
+         
+                    <div class="row row-center transactionDetailItem no-padding">
+                        <div class="col col-50 text-left TransactionDetailLabel">Transaction Date</div>
+						<div class="col col-50 item-text-wrap text-right ">{{transactionDetail.transactionDate | date:'MMM dd, yyyy'}}</div>
+					</div>
+                  
+          
+                    <div class="row row-center transactionDetailItem no-padding">
+						<div class="col col-50 text-left TransactionDetailLabel">Amount</div>
+						<div class="col col-50 item-text-wrap text-right ">{{returnCurrencyAmount(transactionDetail.transactionAmount)}}</div>
+                    </div>
+                 
+        
+                    <div class="row row-center transactionDetailItem no-padding">
+						<div class="col col-50 text-left TransactionDetailLabel">Description</div>
+						<div class="col col-50 item-text-wrap text-right ">{{transactionDetail.transactionDescription}}</div>
+                    </div>
+                  
+          
+                    <div class="row row-center transactionDetailItem no-padding">
+                        <div class="col col-50 text-left TransactionDetailLabel">Net Amount Owed By You</div>
+                        <div class="col col-50 item-text-wrap text-right "
+						ng-class="{'negativeNumber': transactionDetail.transactionPersonAmounts[0].transactionNetAmount > 0, 'positiveNumber': transactionDetail.transactionPersonAmounts[0].transactionNetAmount <= 0} ">
+                        {{returnCurrencyAmount(transactionDetail.transactionPersonAmounts[0].transactionNetAmount)}}</div>
+					</div>
+                  
+                    <div class="row row-center transactionDetailItem no-padding">
+                        <div class="col col-50 text-left TransactionDetailLabel">Your Running Balance</div>
+                        <div class="col col-50 item-text-wrap text-right "
+						ng-class="{'negativeNumber': transactionDetail.transactionPersonAmounts[0].runningBalance.balanceAmount > 0, 'positiveNumber': transactionDetail.transactionPersonAmounts[0].runningBalance.balanceAmount <= 0} ">
+                        {{returnCurrencyAmount(transactionDetail.transactionPersonAmounts[0].runningBalance.balanceAmount)}}</div>
+                    </div>
+              </div>
+              
+      
+          
+              <div class="row row-center" class="transactionDetail" >
+                        <div class="col col-50 text-center  transactionDetail TransactionDetailLabel">Payers</div>
+                            <div class="col col-50 item-text-wrap text-center  transactionDetail TransactionDetailLabel">Payees</div>
+                            
+          </div>         
+          <div class="row row-center">
+          <div class="col">
+          <ion-scroll direction="y" style="height: 40vh">
+          <ion-item class="card no-margin"
+                    ng-repeat="transactionPayer in transactionDetail.transactionPayer" 
+                    >
+                  
+						<div class="row row-center">
+                            <div class="col col-50 text-left">
+								<div class="row row-center debtSummaryRowText no-padding"><img ng-src="{{getGoogleImageSrc(transactionPayer.googlePerson.googleImageUrl,55)}}"></img></div>
+								<div class="row row-center debtSummaryRowText no-padding">{{transactionPayer.name}}</div>
+							</div>
+							<div class="col col-50 item-text-wrap text-right no-padding"
+							ng-class="{'negativeNumber ': transactionPayer.payerAmount > 0, 'positiveNumber ': transactionPayer.payerAmount <= 0} ">
+                            {{returnCurrencyAmount(transactionPayer.payerAmount)}}</div>
+                       </div>
+                  </ion-item>
+              </ion-scroll>
+         </div>
+          <div class="col">
+        <ion-scroll direction="y" style="height: 40vh">
+          <ion-item class="card no-margin"
+                    ng-repeat="transactionPayee in transactionDetail.transactionPayee" 
+                    >
+                        <div class="row row-center">
+                            <div class="col col-50 text-left">
+								<div class="row row-center debtSummaryRowText no-padding"><img ng-src="{{getGoogleImageSrc(transactionPayee.googlePerson.googleImageUrl,55)}}"></img></div>
+								<div class="row row-center debtSummaryRowText no-padding">{{transactionPayee.name}}</div>
+							</div>
+							<div class="col col-50 item-text-wrap text-right no-padding"
+							ng-class="{'negativeNumber ': transactionPayee.payeeAmount > 0, 'positiveNumber ': transactionPayee.payeeAmount <= 0} ">
+                            {{returnCurrencyAmount(transactionPayee.payeeAmount)}}</div>
+                       </div>
+                  </ion-item>
+              </ion-scroll>
+      </div>
+          </div>
+      
+</ion-content>
+
+
+
+  </ion-modal-view>

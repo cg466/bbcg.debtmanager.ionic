@@ -1,0 +1,35 @@
+{
+  "name": "todo",
+  "app_id": "",
+  "proxies": [
+    {
+      "path": "/getGroups",
+      "proxyUrl": "http://bbcgdebttracker.herokuapp.com/getGroups"
+    },
+    {
+      "path": "/transactions",
+      "proxyUrl": "http://bbcgdebttracker.herokuapp.com/transactions"
+    }
+    ,
+    {
+      "path": "/transactionDetails",
+      "proxyUrl": "http://bbcgdebttracker.herokuapp.com/transactionDetails"
+    },
+    {
+      "path": "/settleUp",
+      "proxyUrl": "http://bbcgdebttracker.herokuapp.com/settleUp"
+    },
+	{
+      "path": "/balances",
+      "proxyUrl": "http://bbcgdebttracker.herokuapp.com/balances"
+    },
+	{
+      "path": "/getPerson",
+      "proxyUrl": "http://bbcgdebttracker.herokuapp.com/getPerson"
+    },
+	{
+      "path": "/getPersonByGooglePerson",
+      "proxyUrl": "http://bbcgdebttracker.herokuapp.com/getPersonByGooglePerson"
+    }
+  ]
+}

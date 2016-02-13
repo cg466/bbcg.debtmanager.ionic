@@ -32,7 +32,7 @@ angular.module('karz.controllers', [])
 	};
 })
 
-.controller('MenuCtrl', function($scope, $stateParams, personsService,groupService,$rootScope,$ionicLoading) {
+.controller('MenuCtrl', function($scope, $stateParams, personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {
     
     
     $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
@@ -107,13 +107,22 @@ angular.module('karz.controllers', [])
 		return Math.ceil((transaction.transactionDescription.length)/$rootScope.numCharRow )* $rootScope.heightPerRow;
 	}
     
+    $rootScope.myGoBack = function() {
+       $rootScope.backButton=false;	 
+     $ionicHistory.goBack();
+  };
+    
+    $rootScope.showHide = function() {
+        
+     return $rootScope.backButton;
+  };
 	
 })
 
 .controller('DebtSummaryCtrl', function($scope, $ionicModal, $stateParams, transactionDetailService, transactionService,groupService,settleUpService,$rootScope,$ionicLoading) {
 
   
-		
+	$rootScope.backButton=false;	
 	$rootScope.$on('groupSelected', function(event, args) {
 		$ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
 		$scope.transactions=null;
@@ -177,7 +186,7 @@ angular.module('karz.controllers', [])
        
 .controller('PersonListCtrl', function($scope, $stateParams, personsService,transactionService,groupService,$rootScope, $ionicLoading) {
 		
-		
+	$rootScope.backButton=true;		
 	console.log("here Person list");    
 	$ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
 	$scope.persons=null;
@@ -199,8 +208,8 @@ angular.module('karz.controllers', [])
 })
 
 .controller('TransactionListCtrl', function($scope, $stateParams, personsService,transactionService,transactionDetailService,groupService,$rootScope,$ionicModal,$ionicLoading) {
-        
-	$ionicModal.fromTemplateUrl('templates/transactionDetailsModal.html', {
+  $rootScope.backButton=true;	      
+ $ionicModal.fromTemplateUrl('templates/transactionDetailsModal.html', {
 		scope: $scope,
 		animation: 'slide-in-up'
 	}).then(function(modal) {

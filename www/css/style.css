@@ -100,9 +100,9 @@
   width:33.33333%;
   text-align:left;
 }
-.alignleft1 {
+.alignleft25 {
   float: left;
-  width:1%;
+  width:15%;
   text-align:left;
 }
 .aligncenter {
@@ -110,9 +110,9 @@
   width:33.33333%;
   text-align:center;
 }
-.aligncenter98 {
+.aligncenter50 {
   float: left;
-  width:98%;
+  width:70%;
   text-align:center;
 }
 .alignright {
@@ -120,8 +120,8 @@
  width:33.33333%;
  text-align:right;
 }​
-.alignright1 {
- float: left;
- width:1%;
+.alignright25 {
+ float: right;
+ width:15%;
  text-align:right;
 }​

@@ -1,0 +1,8 @@
+{
+    "jscodehints.detectedExclusions": [
+        "/Users/chitritaghosh/bbcg.debtmanager.ionic/platforms/ios/platform_www/cordova-js-src/platform.js",
+        "/Users/chitritaghosh/bbcg.debtmanager.ionic/www/lib/ionic/js/ionic.min.js",
+        "/Users/chitritaghosh/bbcg.debtmanager.ionic/www/lib/ionic/js/ionic.js",
+        "/Users/chitritaghosh/bbcg.debtmanager.ionic/www/lib/ionic/js/ionic.bundle.min.js"
+    ]
+}

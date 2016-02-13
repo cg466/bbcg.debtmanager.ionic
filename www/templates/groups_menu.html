@@ -1,26 +1,34 @@
 <ion-side-menus>
     <ion-side-menu-content>
           <ion-nav-bar class="bar-calm" >
-			  <ion-nav-back-button>
-			  </ion-nav-back-button>
-
-		  <ion-nav-buttons side="left">
-			<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-			</button>
 			  
+		  <ion-nav-buttons side="left">
+              
+			<button class="button button-icon button-clear ion-navicon " menu-toggle="left">
+			</button>
+              
 		  </ion-nav-buttons>
-             
+           
+              <ion-nav-buttons side="right">
+              
+              
+			  <div id="backButton" class="button button-clear icon-center ion-arrow-left-a" ng-click="myGoBack()" ng-show="showHide()"></div> 
+		  </ion-nav-buttons>
       
     </ion-nav-bar>
+        
        <ion-header-bar class="bar-positive ">
-	   <div class="alignleft1"></div>
-				
-        <div class="aligncenter98" ng-class="{'negativeNumber': $rootScope.activeGroup.persons[0].latestBalance.balanceAmount > 0, 'positiveNumber': $rootScope.activeGroup.persons[0].latestBalance.balanceAmount <= 0} ">
+           
+	   
+           <div class="alignleft25"></div>
+        <div class="aligncenter50" ng-class="{'negativeNumber': $rootScope.activeGroup.persons[0].latestBalance.balanceAmount > 0, 'positiveNumber': $rootScope.activeGroup.persons[0].latestBalance.balanceAmount <= 0} ">
 			<div class ="activeGroupTitle ">{{menuTitleGroup}} <br></div>			
 			<div ng-class="{'negativeNumber': $rootScope.activeGroup.persons[0].latestBalance.balanceAmount > 0, 'positiveNumber': $rootScope.activeGroup.persons[0].latestBalance.balanceAmount <= 0} ">
 			{{menuTitleBalance}}</div>
 		</div>
-		<div class="alignright1"></div>
+           <div class="alignright25"></div>
+           
+		
 	
       </ion-header-bar>
        

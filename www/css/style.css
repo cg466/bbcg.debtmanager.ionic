@@ -106,7 +106,7 @@
   text-align:left;
 }
 .aligncenter {
-  float: left;
+  float: center;
   width:33.33333%;
   text-align:center;
 }

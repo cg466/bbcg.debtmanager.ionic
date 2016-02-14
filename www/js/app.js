@@ -6,8 +6,8 @@
 
 angular.module('karz', ['ionic','karz.controllers'])
 .constant('ApiEndPoint', {
- url: 'http://localhost:8100/'
-   //url: 'http://bbcgdebttracker.herokuapp.com/'
+ //url: 'http://localhost:8100/'
+    url: 'http://bbcgdebttracker.herokuapp.com/'
 })
 
 .config(function($stateProvider, $urlRouterProvider) {

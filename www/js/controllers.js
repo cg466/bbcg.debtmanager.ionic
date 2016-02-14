@@ -81,7 +81,8 @@ angular.module('karz.controllers', [])
 	};
 	
     $rootScope.returnCurrencyAmount=function(number) {
-        return Math.abs(number).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        var roundedNumber=Math.round(100*(Math.abs(number)))/100;
+        return roundedNumber.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     };
 	
     $rootScope.getGoogleImageSrc=function(googleImageUrl,size){

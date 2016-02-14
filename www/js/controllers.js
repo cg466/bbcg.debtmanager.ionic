@@ -35,7 +35,7 @@ angular.module('karz.controllers', [])
 .controller('MenuCtrl', function($scope, $stateParams, personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {
     
     
-    $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
+   /* $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
 	personsService.getPerson(11).then(function(person){
         $rootScope.activePerson=person;
 		console.log("active Person");
@@ -43,7 +43,7 @@ angular.module('karz.controllers', [])
         $rootScope.$broadcast('personAuthenticated');
 		$ionicLoading.hide();
     });
-   
+   */
     $rootScope.numCharRow=14;
 	$rootScope.heightPerRow=45;
 	$rootScope.$on('personAuthenticated', function(event, args) {

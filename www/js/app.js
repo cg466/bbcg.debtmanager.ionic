@@ -6,8 +6,8 @@
 
 angular.module('karz', ['ionic','karz.controllers'])
 .constant('ApiEndPoint', {
- url: 'http://localhost:8100/'
-    //url: 'http://bbcgdebttracker.herokuapp.com/'
+ //url: 'http://localhost:8100/'
+    url: 'http://bbcgdebttracker.herokuapp.com/'
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -66,7 +66,7 @@ angular.module('karz', ['ionic','karz.controllers'])
   })
   
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/debtSummary');
-  // $urlRouterProvider.otherwise('/app/signIn');
+ // $urlRouterProvider.otherwise('/app/debtSummary');
+   $urlRouterProvider.otherwise('/app/signIn');
 });
 

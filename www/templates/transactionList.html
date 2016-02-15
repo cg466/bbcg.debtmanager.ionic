@@ -12,9 +12,9 @@
                 </div>   
 			<ion-scroll direction="y" style="height: 80vh">
                 <ion-item 
-                    collection-repeat="transaction in transactions"
+                    ng-repeat="transaction in transactions"
 					ng-click="selectTransaction(transaction)"
-					collection-item-height="getTransactionHeight(transaction, $index)"
+					//collection-item-height="getTransactionHeight(transaction, $index)"
                 >
                         
 						<div class="row row-center" >

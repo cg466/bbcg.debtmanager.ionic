@@ -2,6 +2,7 @@ angular.module('karz.controllers', [])
 
 .controller('SignInCtrl',function($scope,$state,$ionicLoading, $ionicHistory,personsService,$rootScope){
 	$rootScope.skipSignin=false;
+	
 	$scope.googleSignIn=function(){
 		$ionicLoading.show({
 			template:'Logging in...'
@@ -38,6 +39,8 @@ angular.module('karz.controllers', [])
 			}
 		);
 	};
+	
+	
 })
 
 .controller('MenuCtrl', function($scope, $ionicPlatform,$stateParams, $state,$cordovaNetwork,$ionicPopup,personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {

@@ -4,8 +4,8 @@ angular.module('karz.controllers', [])
 	$scope.googleSignIn=function(){
 		$ionicLoading.show({
 			template:'Logging in...'
-            //changes
-            //testing changes
+            //Testing new contributor changes
+            
 		});
 		
 		

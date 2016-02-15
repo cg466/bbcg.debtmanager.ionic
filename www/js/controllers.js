@@ -13,8 +13,8 @@ angular.module('karz.controllers', [])
 		window.plugins.googleplus.login({},
 			function(user_data){
 				console.log("user_data");
-				console.log(user_data);
-				//$rootScope.coverPhotoUrl=user_data.cover.coverPhoto;
+				$rootScope.userData=user_data;
+				
 				personsService.getPersonByGmail(user_data.email).then(function(person){
                     
 					$rootScope.activePerson=person;
@@ -41,7 +41,7 @@ angular.module('karz.controllers', [])
 	
 })
 
-.controller('MenuCtrl', function($scope, $ionicLoading,$ionicPlatform,$stateParams, $state,$cordovaNetwork,$ionicPopup,personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {
+.controller('MenuCtrl', function($scope, $ionicPopup,$ionicPlatform,$stateParams, $state,$cordovaNetwork,$ionicPopup,personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {
     //changes
      $ionicPlatform.registerBackButtonAction(function() {
 		$rootScope.myGoBack();
@@ -72,7 +72,7 @@ angular.module('karz.controllers', [])
     $rootScope.numCharRow=14;
 	$rootScope.heightPerRow=45;
 	$rootScope.$on('personAuthenticated', function(event, args) {
-		$ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
+		$ionicLoading.show({template: '<ion-spinner></ion-spinner>'});		
 		console.log($rootScope.activePerson.personId);
 		groupService.getGroups($rootScope.activePerson.personId).then(function(groups){
 			$scope.groups=groups;

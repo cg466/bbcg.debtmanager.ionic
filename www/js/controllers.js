@@ -38,6 +38,7 @@ angular.module('karz.controllers', [])
 })
 
 .controller('MenuCtrl', function($scope, $stateParams, $cordovaNetwork,$ionicPopup,personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {
+    //changes
     $rootScope.$on('$cordovaNetwork:offline', 
 					function(event, networkState){
 						$ionicPopup.confirm({

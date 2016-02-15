@@ -6,9 +6,6 @@ angular.module('karz.controllers', [])
 	$scope.googleSignIn=function(){
 		$ionicLoading.show({
 			template:'Logging in...'
-            //Testing new contributor changes
-            // Final Tesing
-            
 		});
 		
 		
@@ -44,13 +41,14 @@ angular.module('karz.controllers', [])
 	
 })
 
-.controller('MenuCtrl', function($scope, $ionicPlatform,$stateParams, $state,$cordovaNetwork,$ionicPopup,personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {
+.controller('MenuCtrl', function($scope, $ionicLoading,$ionicPlatform,$stateParams, $state,$cordovaNetwork,$ionicPopup,personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {
     //changes
      $ionicPlatform.registerBackButtonAction(function() {
 		$rootScope.myGoBack();
     }, 100);
 	$rootScope.$on('$cordovaNetwork:offline', 
 					function(event, networkState){
+						$ionicLoading.hide();
 						$ionicPopup.alert({
 							title: "Internet Disconnected",
 							content: "No internet connection detected. Karz will now close."

@@ -15,9 +15,9 @@
                 </div>  
 			<ion-scroll direction="y" style="height: 40vh">
                 <ion-item
-                    collection-repeat="transaction in transactions"
+                    ng-repeat="transaction in transactions"
 					ng-click="selectTransaction(transaction)"
-					collection-item-height="getTransactionHeight(transaction, $index)"
+					//collection-item-height="getTransactionHeight(transaction, $index)"
                 >
                         <div class="row row-center">
                             <div class="col col-15 debtSummaryRowText">{{transaction.transactionPostedDate |  date:'MMM dd, yyyy'}}</div>
@@ -52,7 +52,7 @@
 				</div>
                 <ion-scroll direction="y" style="height: 30vh">  
 					<ion-item 
-						collection-repeat="settleUp in settleUps" 
+						ng-repeat="settleUp in settleUps" 
 						ng-click="selectSettleUp(settleUp)">
                         <div class="row row-center">
                             <div class="col col-20 text-left item-text-wrap debtSummaryRowText">{{settleUp.group.groupShortName}}</div>

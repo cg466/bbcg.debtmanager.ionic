@@ -1,6 +1,7 @@
 angular.module('karz.controllers', [])
 
 .controller('SignInCtrl',function($scope,$state,$ionicLoading, personsService,$rootScope){
+	$rootScope.skipSignin=false;
 	$scope.googleSignIn=function(){
 		$ionicLoading.show({
 			template:'Logging in...'
@@ -22,6 +23,7 @@ angular.module('karz.controllers', [])
 					console.log(person.personId);
 					$ionicLoading.hide();
 					$rootScope.$broadcast('personAuthenticated');
+					$rootScope.backButton=false;
 					$state.go('app.debtSummary');
 				});
 				
@@ -35,17 +37,28 @@ angular.module('karz.controllers', [])
 	};
 })
 
-.controller('MenuCtrl', function($scope, $stateParams, personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {
-    
-    $rootScope.tranHeightCalc=false;
-    $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
-	personsService.getPerson(11).then(function(person){
-        $rootScope.activePerson=person;
-		console.log("active Person");
-		console.log(person);		
-        $rootScope.$broadcast('personAuthenticated');
-		$ionicLoading.hide();
-    });
+.controller('MenuCtrl', function($scope, $stateParams, $cordovaNetwork,$ionicPopup,personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {
+    $rootScope.$on('$cordovaNetwork:offline', 
+					function(event, networkState){
+						$ionicPopup.confirm({
+							title: "Internet Disconnected",
+							content: "The internet is disconnected on your device."
+						}).then(function(result) {
+							ionic.Platform.exitApp();
+						});
+					}
+	);
+	
+    if($rootScope.skipSignIn=true) {
+		$ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
+		personsService.getPerson(11).then(function(person){
+			$rootScope.activePerson=person;
+			console.log("active Person");
+			console.log(person);		
+			$rootScope.$broadcast('personAuthenticated');
+			$ionicLoading.hide();
+		});
+	}
    
     $rootScope.numCharRow=14;
 	$rootScope.heightPerRow=45;
@@ -134,7 +147,7 @@ angular.module('karz.controllers', [])
 .controller('DebtSummaryCtrl', function($scope, $ionicModal, $stateParams, transactionDetailService, transactionService,groupService,settleUpService,$rootScope,$ionicLoading) {
 
 	
-	$rootScope.backButton=false;	
+	$rootScope.backButton=false;
 	$rootScope.$on('groupSelected', function(event, args) {
 		$ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
 		$scope.transactions=null;

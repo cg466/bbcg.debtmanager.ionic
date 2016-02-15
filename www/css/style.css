@@ -95,6 +95,13 @@
     
 }
 
+.TransactionDetailPayerName{
+    padding-top: 100px;
+	padding-left: 0;
+	font-size: small;
+	horizontal-align: middle;
+}
+
 .alignleft {
   float: left;
   width:33.33333%;

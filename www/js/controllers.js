@@ -34,8 +34,8 @@ angular.module('karz.controllers', [])
 
 .controller('MenuCtrl', function($scope, $stateParams, personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {
     
-    
-   /* $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
+    $rootScope.tranHeightCalc=false;
+    $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
 	personsService.getPerson(11).then(function(person){
         $rootScope.activePerson=person;
 		console.log("active Person");
@@ -43,7 +43,7 @@ angular.module('karz.controllers', [])
         $rootScope.$broadcast('personAuthenticated');
 		$ionicLoading.hide();
     });
-   */
+   
     $rootScope.numCharRow=14;
 	$rootScope.heightPerRow=45;
 	$rootScope.$on('personAuthenticated', function(event, args) {
@@ -102,15 +102,23 @@ angular.module('karz.controllers', [])
 	};
 	
 	$rootScope.getTransactionHeight=function(transaction,index){
+		var elmnt = document.getElementById("tranDesc");
+		$rootScope.tranHeightCalc=true;
+		$rootScope.tranHeightDescription=transaction.transactionDescription;
+		if(index<2) {
+			//console.log(elmnt.prop('offsetHeight'));
+		}
+		$rootScope.tranHeightCalc=false;
 		if(index<20)
 		{
+		
 		console.log(transaction.transactionDescription+","+transaction.transactionDescription.length+","+Math.ceil((transaction.transactionDescription.length)/$rootScope.numCharRow)+","+Math.ceil((transaction.transactionDescription.length)/$rootScope.numCharRow )* $rootScope.heightPerRow);}
 		return Math.ceil((transaction.transactionDescription.length)/$rootScope.numCharRow )* $rootScope.heightPerRow;
 	}
     
     $rootScope.myGoBack = function() {
-       $rootScope.backButton=false;	 
-     $ionicHistory.goBack();
+		$rootScope.backButton=false;	 
+		$ionicHistory.goBack();
   };
     
     $rootScope.showHide = function() {
@@ -122,7 +130,7 @@ angular.module('karz.controllers', [])
 
 .controller('DebtSummaryCtrl', function($scope, $ionicModal, $stateParams, transactionDetailService, transactionService,groupService,settleUpService,$rootScope,$ionicLoading) {
 
-  
+	
 	$rootScope.backButton=false;	
 	$rootScope.$on('groupSelected', function(event, args) {
 		$ionicLoading.show({template: '<ion-spinner></ion-spinner>'});

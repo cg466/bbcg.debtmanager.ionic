@@ -76,8 +76,8 @@
                   
 						<div class="row row-center">
                             <div class="col col-50 text-left">
-								<div class="row row-center debtSummaryRowText no-padding"><img ng-src="{{getGoogleImageSrc(transactionPayer.googlePerson.googleImageUrl,55)}}"></img></div>
-								<div class="row row-center debtSummaryRowText no-padding">{{transactionPayer.name}}</div>
+								<div class="row row-center debtSummaryRowText"><img ng-src="{{getGoogleImageSrc(transactionPayer.googlePerson.googleImageUrl,55)}}"></img></div>
+								<div class="row row-center debtSummaryRowText">{{transactionPayer.name}}</div>
 							</div>
 							<div class="col col-50 item-text-wrap text-right no-padding"
 							ng-class="{'negativeNumber ': transactionPayer.payerAmount > 0, 'positiveNumber ': transactionPayer.payerAmount <= 0} ">
@@ -93,8 +93,8 @@
                     >
                         <div class="row row-center">
                             <div class="col col-50 text-left">
-								<div class="row row-center debtSummaryRowText no-padding"><img ng-src="{{getGoogleImageSrc(transactionPayee.googlePerson.googleImageUrl,55)}}"></img></div>
-								<div class="row row-center debtSummaryRowText no-padding">{{transactionPayee.name}}</div>
+								<div class="row row-center debtSummaryRowText"><img ng-src="{{getGoogleImageSrc(transactionPayee.googlePerson.googleImageUrl,55)}}"></img></div>
+								<div class="row row-center debtSummaryRowText">{{transactionPayee.name}}</div>
 							</div>
 							<div class="col col-50 item-text-wrap text-right no-padding"
 							ng-class="{'negativeNumber ': transactionPayee.payeeAmount > 0, 'positiveNumber ': transactionPayee.payeeAmount <= 0} ">

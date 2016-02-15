@@ -52,7 +52,7 @@ angular.module('karz.controllers', [])
 					function(event, networkState){
 						$ionicPopup.alert({
 							title: "Internet Disconnected",
-							content: "No No internet connection detected. Karz will now close."
+							content: "No internet connection detected. Karz will now close."
 						}).then(function(result) {
 							ionic.Platform.exitApp();
 						});

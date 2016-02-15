@@ -127,18 +127,20 @@ angular.module('karz.controllers', [])
 	};
 	
 	$rootScope.getTransactionHeight=function(transaction,index){
-		var elmnt = document.getElementById("tranDesc");
-		$rootScope.tranHeightCalc=true;
-		$rootScope.tranHeightDescription=transaction.transactionDescription;
-		if(index<2) {
-			//console.log(elmnt.prop('offsetHeight'));
-		}
-		$rootScope.tranHeightCalc=false;
+		// var elmnt = document.getElementById("tranDesc");
+		// $rootScope.tranHeightCalc=true;
+		// $rootScope.tranHeightDescription=transaction.transactionDescription;
+		// if(index<2) {
+			// //console.log(elmnt.prop('offsetHeight'));
+		// }
+		// $rootScope.tranHeightCalc=false;
 		if(index<20)
 		{
 		
-		console.log(transaction.transactionDescription+","+transaction.transactionDescription.length+","+Math.ceil((transaction.transactionDescription.length)/$rootScope.numCharRow)+","+Math.ceil((transaction.transactionDescription.length)/$rootScope.numCharRow )* $rootScope.heightPerRow);}
-		return Math.ceil((transaction.transactionDescription.length)/$rootScope.numCharRow )* $rootScope.heightPerRow;
+			//console.log(transaction.transactionDescription+","+transaction.transactionDescription.length+","+Math.ceil((transaction.transactionDescription.length)/$rootScope.numCharRow)+","+Math.ceil((transaction.transactionDescription.length)/$rootScope.numCharRow )* $rootScope.heightPerRow);}
+			//return Math.ceil((transaction.transactionDescription.length)/$rootScope.numCharRow )* $rootScope.heightPerRow;
+			return 150;
+		}
 	}
     
     $rootScope.myGoBack = function() {

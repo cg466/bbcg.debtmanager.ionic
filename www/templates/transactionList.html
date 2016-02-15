@@ -12,9 +12,9 @@
                 </div>   
 			<ion-scroll direction="y" style="height: 80vh">
                 <ion-item 
-                    ng-repeat="transaction in transactions"
+                    collection-repeat="transaction in transactions"
 					ng-click="selectTransaction(transaction)"
-					//collection-item-height="getTransactionHeight(transaction, $index)"
+					collection-item-height=150
                 >
                         
 						<div class="row row-center" >
@@ -28,14 +28,7 @@
                         </div>
                 </ion-item>
             </ion-scroll>
-			<div id="tranDescDiv" class="row row-center" ng-show="tranHeightCalc">
-                            <div class="col col-15 debtSummaryRowText"></div>
-                            <div id="tranDesc" class="col col-55 item-text-wrap debtSummaryRowText" >tranHeightDescription</div>
-                            <div class="col col-20 debtSummaryRowText"></div>
-                            <div class="col col-20"
-                                 ng-class="{'negativeNumber': transaction.transactionPersonAmounts[0].runningBalance.balanceAmount > 0, 'positiveNumber': transaction.transactionPersonAmounts[0].runningBalance.balanceAmount <= 0} ">
-                            </div>
-                        </div>
+			
         </section>
 		
       

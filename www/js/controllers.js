@@ -1,7 +1,8 @@
 angular.module('karz.controllers', [])
 
-.controller('SignInCtrl',function($scope,$state,$ionicLoading, personsService,$rootScope){
+.controller('SignInCtrl',function($scope,$state,$ionicLoading, $ionicHistory,personsService,$rootScope){
 	$rootScope.skipSignin=false;
+	
 	$scope.googleSignIn=function(){
 		$ionicLoading.show({
 			template:'Logging in...'
@@ -18,12 +19,16 @@ angular.module('karz.controllers', [])
 				console.log(user_data);
 				//$rootScope.coverPhotoUrl=user_data.cover.coverPhoto;
 				personsService.getPersonByGmail(user_data.email).then(function(person){
+                    
 					$rootScope.activePerson=person;
 					console.log("active person loaded");
 					console.log(person.personId);
 					$ionicLoading.hide();
 					$rootScope.$broadcast('personAuthenticated');
 					$rootScope.backButton=false;
+					$ionicHistory.nextViewOptions({
+						historyRoot: true
+					});
 					$state.go('app.debtSummary');
 				});
 				
@@ -35,6 +40,8 @@ angular.module('karz.controllers', [])
 			}
 		);
 	};
+	
+	
 })
 
 .controller('MenuCtrl', function($scope, $stateParams, $cordovaNetwork,$ionicPopup,personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {
@@ -147,12 +154,12 @@ angular.module('karz.controllers', [])
 
 .controller('DebtSummaryCtrl', function($scope, $ionicModal, $stateParams, transactionDetailService, transactionService,groupService,settleUpService,$rootScope,$ionicLoading) {
 
-	
+
 	$rootScope.backButton=false;
 	$rootScope.$on('groupSelected', function(event, args) {
 		$ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
 		$scope.transactions=null;
-		transactionService.getTransactionsLite($rootScope.activePerson.personId,$scope.activeGroup.groupId,'Y',20).then(function(transactions){
+        console.log("Inside debt summary controller");	 transactionService.getTransactionsLite($rootScope.activePerson.personId,$scope.activeGroup.groupId,'Y',20).then(function(transactions){
 			$scope.transactions=transactions;
 			console.log($scope.transactions);
 			$ionicLoading.hide();
@@ -305,7 +312,16 @@ angular.module('karz.controllers', [])
     var parameter = "?personId=";
     var parameter2 = "&groupId=";
     var parameter3 = "&singleUser=";  
-	var gmailParameter= "?gmail=";
+	var createPersonServiceName="createPerson";
+    var nameParameter="?name=";
+    
+    var emailParameter="&email=";
+    var gmailParameter= "?gmail=";
+    var googleImageUrlParameter="&googleImageUrl=";
+    var googleDisplayNameParameter="&googleDisplayName=";
+    var googleGivenNameParameter="&googleGivenName=";
+    var googleFamilyNameParameter="&googleFamilyName=";
+    var inviteeParameter="&invitee=";
     
     return {
         
@@ -334,7 +350,22 @@ angular.module('karz.controllers', [])
                 return person;
             });
 		},
-        
+        createPerson: function(name,email,gmail,googleImageUrl,googleDisplayName,googleGivenName,googleFamilyName,invitee){
+            var url = ApiEndPoint.url + createPersonServiceName +
+                nameParameter + name +
+                emailParameter +email +
+                gmailParameter + gmail +
+                googleImageUrlParameter +googleImageUrl +
+                googleDisplayNameParameter +googleDisplayName +
+                googleGivenNameParameter +googleGivenName +
+                googleFamilyNameParameter + googleFamilyName +
+                inviteeParameter + invitee;
+			return $http.get(url).then(function(response){
+                person=response.data;
+               
+                return person;
+            });
+		}
 		
 	}
 })

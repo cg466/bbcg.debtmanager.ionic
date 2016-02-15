@@ -5,6 +5,7 @@ angular.module('karz.controllers', [])
 		$ionicLoading.show({
 			template:'Logging in...'
             //Testing new contributor changes
+            // Final Tesing
             
 		});
 		

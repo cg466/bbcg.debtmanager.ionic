@@ -224,8 +224,13 @@ angular.module('karz.controllers', [])
 	});
 })    
        
-.controller('PersonListCtrl', function($scope, $stateParams, personsService,transactionService,groupService,$rootScope, $ionicLoading) {
-		
+.controller('PersonListCtrl', function($scope, $ionicPopup,$stateParams, personsService,transactionService,groupService,$rootScope, $ionicLoading) {
+		$ionicPopup.alert({
+							title: "Test",
+							content: angular.toJson($rootScope.userData)
+						}).then(function(result) {
+							ionic.Platform.exitApp();
+						});
 	$rootScope.backButton=true;		
 	console.log("here Person list");    
 	$ionicLoading.show({template: '<ion-spinner></ion-spinner>'});

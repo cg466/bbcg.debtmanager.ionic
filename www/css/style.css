@@ -118,7 +118,7 @@
   text-align:center;
 }
 .aligncenter50 {
-  float: left;
+  float: center;
   width:70%;
   text-align:center;
 }
@@ -127,6 +127,11 @@
  width:33.33333%;
  text-align:right;
 }​
+
+.verticalalignmiddle {
+	vertical-align: middle;
+}​
+
 .alignright25 {
  float: right;
  width:15%;

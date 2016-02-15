@@ -44,13 +44,16 @@ angular.module('karz.controllers', [])
 	
 })
 
-.controller('MenuCtrl', function($scope, $stateParams, $cordovaNetwork,$ionicPopup,personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {
+.controller('MenuCtrl', function($scope, $ionicPlatform,$stateParams, $state,$cordovaNetwork,$ionicPopup,personsService,groupService,$rootScope,$ionicLoading,$ionicHistory) {
     //changes
-    $rootScope.$on('$cordovaNetwork:offline', 
+     $ionicPlatform.registerBackButtonAction(function() {
+		$rootScope.myGoBack();
+    }, 100);
+	$rootScope.$on('$cordovaNetwork:offline', 
 					function(event, networkState){
-						$ionicPopup.confirm({
+						$ionicPopup.alert({
 							title: "Internet Disconnected",
-							content: "The internet is disconnected on your device."
+							content: "No internet connection detected. Karz will now close."
 						}).then(function(result) {
 							ionic.Platform.exitApp();
 						});
@@ -141,9 +144,15 @@ angular.module('karz.controllers', [])
 	}
     
     $rootScope.myGoBack = function() {
-		$rootScope.backButton=false;	 
-		$ionicHistory.goBack();
-  };
+		$rootScope.backButton=false;
+		// $ionicHistory.goBack();
+		if ($state.is('app.debtSummary')) {
+			ionic.Platform.exitApp();
+		}
+		else {
+			$ionicHistory.goBack();
+		}		
+	};
     
     $rootScope.showHide = function() {
         
@@ -152,7 +161,7 @@ angular.module('karz.controllers', [])
 	
 })
 
-.controller('DebtSummaryCtrl', function($scope, $ionicModal, $stateParams, transactionDetailService, transactionService,groupService,settleUpService,$rootScope,$ionicLoading) {
+.controller('DebtSummaryCtrl', function($scope, $ionicHistory,$ionicModal, $stateParams, transactionDetailService, transactionService,groupService,settleUpService,$rootScope,$ionicLoading) {
 
 
 	$rootScope.backButton=false;

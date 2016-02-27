@@ -60,7 +60,7 @@ angular.module('karz.controllers', [])
 	
     if($rootScope.skipSignIn=true) {
 		$ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
-		personsService.getPerson(11).then(function(person){
+		personsService.getPerson(9).then(function(person){
 			$rootScope.activePerson=person;
 			console.log("active Person");
 			console.log(person);		
@@ -188,12 +188,13 @@ angular.module('karz.controllers', [])
 		console.log ('selected transaction');
 		console.log("here Transaction details");    
 		$ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
-		$rootScope.transactionDetail=null;
+		$rootScope.transactionDetail=null;	
 		transactionDetailService.getTransactionDetails($rootScope.transaction.tranId,$rootScope.activePerson.personId,$rootScope.activeGroup.groupId).then(function(transactionDetail){
 			$rootScope.transactionDetail=transactionDetail;
 			console.log(transactionDetail);
-			$ionicLoading.hide();
-		});
+		});		
+		$ionicLoading.hide();
+			
 		$scope.openModal();
 	};
 		
@@ -226,13 +227,16 @@ angular.module('karz.controllers', [])
 	});
 })    
        
-.controller('PersonListCtrl', function($scope, $ionicPopup,$stateParams, personsService,transactionService,groupService,$rootScope, $ionicLoading) {
-		$ionicPopup.alert({
-							title: "Test",
-							content: angular.toJson($rootScope.userData)
-						}).then(function(result) {
-							ionic.Platform.exitApp();
-						});
+.controller('PersonListCtrl', function($scope, $cordovaToast, $ionicPopup,$stateParams, personsService,transactionService,groupService,$rootScope, $ionicLoading) {
+		// $ionicPopup.alert({
+							// title: "Test",
+							// content: angular.toJson($rootScope.userData)
+						// }).then(function(result) {
+							// ionic.Platform.exitApp();
+						// });
+						
+	$cordovaToast.show(angular.toJson($rootScope.userData),'long','top');
+	$cordovaToast.show($rootScope.userData.displayName,'long','bottom');
 	$rootScope.backButton=true;		
 	console.log("here Person list");    
 	$ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
@@ -310,9 +314,9 @@ angular.module('karz.controllers', [])
 		transactionDetailService.getTransactionDetails($rootScope.transaction.tranId,$rootScope.activePerson.personId,$rootScope.activeGroup.groupId).then(function(transactionDetail){
 			$rootScope.transactionDetail=transactionDetail;
 			console.log(transactionDetail);
-			$ionicLoading.hide();
-		});
-		$scope.openModal();
+		});	
+		$ionicLoading.hide();				
+		$scope.openModal();	
 	};
 }) 	
     

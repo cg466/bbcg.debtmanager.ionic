@@ -4,10 +4,10 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 
-angular.module('karz', ['ionic','karz.controllers','ngCordova'])
+angular.module('karz', ['ionic','karz.controllers','ngCordova','ngResource'])
 .constant('ApiEndPoint', {
- // url: 'http://localhost:8100/'
-    url: 'http://bbcgdebttracker.herokuapp.com/'
+ url: 'http://localhost:8100/'
+    // url: 'http://bbcgdebttracker.herokuapp.com/'
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -67,8 +67,8 @@ angular.module('karz', ['ionic','karz.controllers','ngCordova'])
   
   // if none of the above states are matched, use this as the fallback
 
- // $urlRouterProvider.otherwise('/app/debtSummary');
-    $urlRouterProvider.otherwise('/app/signIn');
+ $urlRouterProvider.otherwise('/app/debtSummary');
+    // $urlRouterProvider.otherwise('/app/signIn');
 
 
 });

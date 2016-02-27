@@ -7,24 +7,25 @@
 						<div class="aligncenter">Recent Activity</div>
 						<div class="alignright"><a href="#/app/transactionList" class="button icon-center ion-social-usd-outline"></a></div>
             </div>
-				<div class="row debtSummaryColHeader">
+				<div class="row debtSummaryColHeader no-padding">
 					<div class="col col-15 debtSummaryColumnHeader text-left">Date</div>
-                    <div class="col col-55 debtSummaryColumnHeader text-left">Description</div>
-                    <div class="col col-20 debtSummaryColumnHeader text-left">Amount</div>
-                    <div class="col col-20 debtSummaryColumnHeader text-left">Balance</div>
+                    <div class="col col-60 debtSummaryColumnHeader text-left">Description</div>
+                    <div class="col col-12 debtSummaryColumnHeader text-left">Amount</div>
+                    <div class="col col-13 debtSummaryColumnHeader text-right">Balance</div>
                 </div>  
 			<ion-scroll direction="y" style="height: 40vh">
                 <ion-item
                     ng-repeat="transaction in transactions"
 					ng-click="selectTransaction(transaction)"
 					//collection-item-height="getTransactionHeight(transaction, $index)"
+					class="debtSummaryRowText"
                 >
                         <div class="row row-center">
-                            <div class="col col-15 debtSummaryRowText">{{transaction.transactionPostedDate |  date:'MMM dd, yyyy'}}</div>
-                            <div class="col col-55 item-text-wrap debtSummaryRowText">{{transaction.transactionDescription}}</div>
-                            <div class="col col-20 debtSummaryRowText">{{returnCurrencyAmount(transaction.transactionAmount)}}</div>
+                            <div class="col col-15">{{transaction.transactionPostedDate |  date:'MMM dd, yyyy'}}</div>
+                            <div class="col col-60 item-text-wrap">{{transaction.transactionDescription}}</div>
+                            <div class="col col-12">{{returnCurrencyAmount(transaction.transactionAmount)}}</div>
                             <div 
-                                 ng-class="{'negativeNumber col col-20 text-left': transaction.transactionPersonAmounts[0].runningBalance.balanceAmount > 0, 'positiveNumber col col-20 text-left': transaction.transactionPersonAmounts[0].runningBalance.balanceAmount <= 0} ">
+                                 ng-class="{'negativeNumber col col-13 text-right': transaction.transactionPersonAmounts[0].runningBalance.balanceAmount > 0, 'positiveNumber col col-13 text-right': transaction.transactionPersonAmounts[0].runningBalance.balanceAmount <= 0} ">
                                 {{returnCurrencyAmount(transaction.transactionPersonAmounts[0].runningBalance.balanceAmount)}}
                             </div>
                         </div>
@@ -38,26 +39,27 @@
 				<div class="alignright"><a href="#/app/personList" class="button icon-center ion-person-stalker"></a></div>
             </div>
 				
-				<div class="row row-center debtSummaryColHeader">
-					<div class="col col-20 text-left debtSummaryColumnHeader">Group</div>
-					<div class="col col-40 text-left debtSummaryColumnHeader">Description</div>
-					<div class="col col-20 text-left debtSummaryColumnHeader">Amount</div>
+				<div class="row row-center debtSummaryColHeader no-padding">
+					<div class="col col-15 text-left debtSummaryColumnHeader">Group</div>
+					<div class="col col-72 text-left debtSummaryColumnHeader">Description</div>
+					<div class="col col-13 text-right debtSummaryColumnHeader">Amount</div>
                 </div>
 				<div class="card" ng-if="settleUps.length == 0">
-					<div class="alignleft25"></div>
-					<div class="aligncenter50 debtSummaryColHeader">
+					<div class="alignleft"></div>
+					<div class="aligncenter debtSummaryColHeader positiveNumber" >
 						All Settled Up!
 					</div>
-					<div class="alignright25"></div>
+					<div class="alignright"></div>
 				</div>
                 <ion-scroll direction="y" style="height: 30vh">  
 					<ion-item 
 						ng-repeat="settleUp in settleUps" 
-						ng-click="selectSettleUp(settleUp)">
+						ng-click="selectSettleUp(settleUp)"
+						class="debtSummaryRowText">
                         <div class="row row-center">
-                            <div class="col col-20 text-left item-text-wrap debtSummaryRowText">{{settleUp.group.groupShortName}}</div>
-                            <div class="col col-40 text-left item-text-wrap debtSummaryRowText">{{settleUp.debtSettleUpPayer.name}} should pay     {{settleUp.debtSettleUpPayee.name}}</div>
-                            <div class="col col-20 text-left item-text-wrap debtSummaryRowText">{{returnCurrencyAmount(settleUp.debtSettleUpAmount)}}</div>
+                            <div class="col col-15 text-left">{{settleUp.group.groupShortName}}</div>
+                            <div class="col col-72 text-left item-text-wrap">{{settleUp.debtSettleUpPayer.name}} should pay     {{settleUp.debtSettleUpPayee.name}}</div>
+                            <div class="col col-13 text-right">{{returnCurrencyAmount(settleUp.debtSettleUpAmount)}}</div>
                         </div>
                   </ion-item>
 				</ion-scroll>

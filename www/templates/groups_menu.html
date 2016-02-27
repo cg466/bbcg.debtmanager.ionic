@@ -42,16 +42,23 @@
       </ion-header-bar>
         <ion-content>
           <!--<img ng-src="{{getCoverImageSrc(coverPhotoUrl)}}"></img>-->
-		  <ion-scroll direction="y" style="height: 60vh">
+		  <ion-scroll direction="y" style="height: 90vh">
 		  <ion-list>
               <ion-item 
                         collection-repeat="group in groups" 
                         ng-click="selectGroup(group)" 
                         menu-close
                         ng-class="{energized:group==activeGroup}"
-						class="debtSummaryRowText"
+						class="groupsMenuRowText"
                         >
-              {{group.groupName}}
+				<div class="row row-center">
+						<div class="col col-70 text-left ">{{group.groupName}}</div>						
+						<div class="col col-30 text-right "
+						ng-class="{'negativeNumber': group.persons[0].latestBalance.balanceAmount > 0, 'positiveNumber': group.persons[0].latestBalance.balanceAmount <= 0} ">
+						{{returnCurrencyAmount(group.persons[0].latestBalance.balanceAmount)}}</div>
+                </div>
+				
+				
               </ion-item>
           </ion-list>
 		  </ion-scroll>
